@@ -1,0 +1,697 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8" />
+		<title>Glenn & Glenn Insiders</title>
+		<meta name="viewport" content="width=device-width"> <!--For chrome responsive view to work, di ko po alam kung bakit ayaw gumana pag wala po to eh :/ -->
+		<link rel="stylesheet" type="text/css" href="css/styles.css">
+	</head>
+	<body>
+		<div>
+			<header id = 'topheader'><div></div><div>Glenn & Glenn Insiders</div><div></div></header>
+			<div>
+				<div>
+				<div class = "tabs">
+					<div>
+						<button class = "t1">
+							<div>ABOUT THIS WEBSITE</div>
+						</button>
+						<button class = "t2">
+							<div>SURVEY</div>
+						</button>
+						<button class = "t3">
+							<div>ABOUT THE AUTHOR</div>
+						</button>
+						<button class = "t4">
+							<div>PLAY</div>
+						</button>
+						<div id = "tabanimation"></div>
+					</div>
+				</div>
+				<div class = "content">
+					<div class = "about">
+						<div class = "display d1">
+							<div class = "img"><img src = "img/about1_1.jfif"></div>
+							<div class = "overlay">
+								<div class = "text">
+									<div>CHAIN REACTION</div>
+								</div>
+								<div class = "selection">
+									<div>
+										<button class = "text" onclick = "document.getElementById('scroll').scrollIntoView();">
+											<div>What This Website Is About</div>
+										</button>
+									</div>
+									<div>
+										<button class = "text" onclick = "document.getElementById('play').scrollIntoView();">
+											<div>Play Chain Reaction</div>
+										</button>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class = "desc" id = "scroll">
+							<div>ABOUT THIS WEBSITE</div>
+							<span class = "no_indent">This website is about a group of 3 Pisay peeps that like playing Chain Reaction.</span>
+							<span>The trio are seatmates in CS class, doing many cool and interesting things during CS class ;) Fun fact, this project was a result of one of the many quirky things the trio did during class… After we were “finished” with our tasks for CS period, we decided to try to code our own version of Chain Reaction using what we’ve learned from class, initially as a joke and a pastime. After a few days, we finished the code and it looked pretty nice for what was initially a joke xDD.</span>
+							<span>Anyways, a few days passed and we thought “Well, if we’ve put enough effort into making a code for Chain Reaction, then why don’t we make a ‘website’ about it for our CS Project…”; and one Christmas Break later, that’s we did HAHAHA.</span>
+							<span>Well actually… the real reason why we made this website is not just because it’s requirement for CS, not because it’s x% of our grade… it’s a tribute to a game that has connected seasoned, veteran players and it’s newer, rookie audience. A game that’s brought us all together… despite the constant knocking of the challenges and difficulties of life, we always find time to enjoy it… one of our favorite ways being through playing this game. Without further adieu, we present… Chain Reacts, enjoy XDXD!!!</span>
+							<div>GAME MECHANICS</div>
+							<span>
+								<ol>
+									<li>Chain Reacts is a 2-player game with 2 different types of atoms to be placed in regions of a chamber. Each player controls controls an atom of a specific color, with each player placing an atom in their cell at their turn, through clicking their desired cell.</li>
+									<li>Players have an “Undo” option which allows them to undo their last move and correct the placement of their atom, given that the opposing player hasn’t made their move yet (however, we made it so that you can undo however many amount of moves you want to undo.)</li>
+									<li>Each cell in the chamber has their own capacity. The cells in the corner are most reactive, upon placing 2 atoms on the corner cells, they fuse together, exploding and reacting to the atoms in adjacent cell, converting them to their own color. Similarly, the atoms along the lengths and widths of the chamber require 3 atoms before fusing, and the rest of the cells require 4 cells to fuse.</li>
+									<li>The explosion caused by fusion could also trigger the fusion and explosion of atoms in other adjacent cells, causing a CHAIN REACTION.</li>
+									<li>A player wins once all the atoms in the cells of the chamber are of that his/her/their color.</li>
+								</ol>
+							</span>
+							<div>RECOMMENDED VERSIONS OF CHAIN REACTION</div>
+							<div style = "padding-left: 50px"><img src = "img/chain1.png"></div>
+							<span class = "no_indent" style = "font-weight: bold">Chain Reaction by Webndroid (MOBILE)</span>
+							<span>
+								<ul>
+									<li>Features a really nice and simple design which allows you to easily notice the moves made by your opponent</li>
+									<li>Allows you to play with up to 8 players in normal or hard mode</li>
+								</ul>
+							</span>
+							<div style = "padding-left: 50px; padding-top: 35px;"><img src = "img/chain2.png"></div>
+							<span class = "no_indent" style = "font-weight: bold">Chain RX by Anubhav Dhawan (MOBILE)</span>
+							<span>
+								<ul>
+									<li>Features cool battle music and SFX that creates a more immersive game experience</li>
+									<li>Allows you to play online or offline with up to 8 players and 3 different grids</li>
+								</ul>
+							</span>
+							
+						</div>
+						<div class = "display d2">
+							<div class = "img"><img src = "img/about2.png"></div>
+							<div class = "overlay">
+								<div>
+									<div class = "text">
+										<div>Play Chain Reaction Now!</div>
+									</div>
+								</div>
+								<div>
+									<button class = "text" id = "play">
+										<div>PLAY</div>
+									</button>
+								</div>
+							</div>
+						</div>
+					</div>
+					
+					
+					
+					<div class = "survey">
+						<img src = "img/about2.png">
+						<div></div>
+						<div>
+							<div></div>
+							<div class = "whole">
+								<div><div>Please fill out this survey on our website!</div></div>
+								<div>
+									<form>
+										<div>
+											<label for = "rating1">Design</label>
+											<select name = "rating1">
+												<option value = 5>5 - Outstanding</option>
+												<option value = 4>4 - Good</option>
+												<option value = 3>3 - Meh</option>
+												<option value = 2>2 - Bad</option>
+												<option value = 1>1 - I hate it</option>
+											</select>
+										</div>
+										<div>
+											<label for = "rating2">Game</label>
+											<select name = "rating2">
+												<option value = 5>5 - Outstanding</option>
+												<option value = 4>4 - Good</option>
+												<option value = 3>3 - Meh</option>
+												<option value = 2>2 - Bad</option>
+												<option value = 1>1 - I hate it</option>
+											</select>
+										</div>
+										<div>
+											<label for = "cmts">Comments/Suggestions:</label>
+											<textarea name = "cmts" required></textarea>
+										</div>
+										<div class = "submitdiv">
+											<button id = "submit">Submit Survey</button>
+										</div>
+									</form>
+								</div>
+							</div>
+							<div></div>
+						</div>
+						<div></div>
+					</div>
+					
+					
+					
+					<div class = "author">
+						<div class = "display d3">
+							<div class = "img"><img src = "img/about3_1.jpg"></div>
+							<div class = "overlay">
+								<div class = "text">
+									<div>WEBSITE DEVELOPERS</div>
+								</div>
+
+							</div>
+						</div>
+						<div class = "desc">
+							<div class = "devs">
+								<div class = "dev manu">
+									<div class = "pic">
+										<div class = "name">Manuelle Christian Lim</div>
+										<div><img src = "img/manu.jpg"></div>
+									</div>
+									<div><div>Born at a very young age, loves Garden</div></div>
+									<div></div>
+								</div>
+								<div class = "dev caesar">
+									<div class = "pic">
+										<div class = "name">Caesar Lopez</div>
+										<div><img src = "img/caesar.jpg"></div>
+									</div>
+									<div><div>Loves rock n' roll</div></div>
+									<div></div>
+								</div>
+								<div class = "dev glenn">
+									<div class = "pic">
+										<div class = "name">Glenn Carlo Paragas</div>
+										<div><img src = "img/glenn.jpg"></div>
+									</div>
+									<div><div>Loves Mobile Legends Bang Bang</div></div>
+									<div></div>
+								</div>
+							</div>
+						</div>
+						<div class = "creds">
+							<div class = "c1">CREDITS:</div>
+							<div>Display Pictures: Google Images</div>
+							<div>Chain Reaction Picture Design: Glenn Paragas</div>
+							<div>And of course...</div>
+							<div>Sir Paolo Niccolo Santos, for teaching us Web Development <img src = "img/heart.png" style = "width: 20px; height: 20px;"></div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div id = "red_0"><div id = "red"></div></div>
+		</div>
+		<script>
+			var aboutbutton = document.getElementsByClassName('t1')[0];
+			var surveybutton = document.getElementsByClassName('t2')[0];
+			var authorbutton = document.getElementsByClassName('t3')[0];
+			var playbutton = document.getElementsByClassName('t4')[0];
+			var playbutton2 = document.getElementById('play');
+			var tabbuttons = [aboutbutton, surveybutton, authorbutton];
+			var content = document.getElementsByClassName('content')[0];
+			var tabanim = document.getElementById('tabanimation');
+			var tabdivs = content.childNodes;
+			var currentbutton = aboutbutton;
+			var hide = document.getElementById('red');
+			var display1 = document.getElementsByClassName('d1')[0], display2 = document.getElementsByClassName('d3')[0], pic = 1, pic2 = 1, currentimg, currentimg2;
+			var bodydiv = document.getElementsByTagName('BODY')[0];
+			
+			display1.removeChild(display1.getElementsByClassName('img')[0]);
+			display2.removeChild(display2.getElementsByClassName('img')[0]);
+			
+			var tabs = [];
+			
+			
+			function updateanims(){ //click effects and other stuff
+				var texts = document.getElementsByClassName('text');
+				var buttons = document.getElementsByTagName('BUTTON');
+				for (var i = 0; i < texts.length; i++){
+					var button = texts[i];
+					if (button.tagName == "BUTTON"){ //adds click effect if element is a button
+						button.onmousedown = function(){
+							this.style.transition = "none";
+							this.style.filter = "brightness(80%)";
+						}
+						button.onmouseup = function(){
+							this.style.transition = "background 0.5s";
+							this.style.filter = "none";
+						}
+						
+						button.ontouchstart = function(){ //for touchscreens
+							this.style.transition = "none";
+							this.style.filter = "brightness(80%)";
+						}
+						button.ontouchend = function(){
+							this.style.transition = "background 0.5s";
+							this.style.filter = "none";
+						}
+						
+						button.onmouseout = function(){
+							this.style.transition = "background 0.5s, filter 0.5s";
+							this.style.filter = "none";
+						}
+					}
+				}
+				for (var i = 0; i < buttons.length; i++){
+					var button = buttons[i];
+					if (button.id == 'submit') { //click effect for submit button in survey tab
+						button.onmousedown = function(){
+							this.style.transition = "none";
+							this.style.filter = "brightness(80%)";
+						}
+						button.onmouseup = function(){
+							this.style.transition = "background 0.5s";
+							this.style.filter = "none";
+						}
+						
+						button.ontouchstart = function(){
+							this.style.transition = "none";
+							this.style.filter = "brightness(80%)";
+						}
+						button.ontouchend = function(){
+							this.style.transition = "background 0.5s";
+							this.style.filter = "none";
+						}
+						button.onmouseout = function(){
+							this.style.transition = "background 0.5s, filter 0.5s";
+							this.style.filter = "none";
+						}
+					}
+					else if (button != currentbutton && button.className != 'text' && button.id != 'play') { //if button is not the tab button that has been already clicked to switch tabs, not .text, and not #play, add hover and click effect
+						button.onmouseover = function(){
+							if (this != currentbutton) {
+								this.style.filter = "none";
+								this.style.transition = "background 0.5s";
+								this.style.background = 'rgba(255, 215, 0, 0.8)';
+							}
+						}
+						button.onmouseout = function(){
+							if (this != currentbutton) {
+								this.style.filter = "none";
+								this.style.transition = "background 0.5s";
+								this.style.background = 'rgba(255, 215, 0, 0.9)';
+							}
+						}
+						button.onmousedown = function(){
+							if (this != currentbutton) {
+								this.style.transition = "none";
+								this.style.filter = "brightness(90%)";
+							}
+						}
+						button.onmouseup = function(){
+							if (this != currentbutton) {
+								this.style.transition = "none";
+								this.style.filter = "none";
+							}
+						}
+						button.ontouchstart = function(){
+							if (this != currentbutton) {
+								this.style.transition = "none";
+								this.style.filter = "brightness(90%)";
+							}
+						}
+						button.ontouchend = function(){
+							if (this != currentbutton) {
+								this.style.transition = "none";
+								this.style.filter = "none";
+							}
+						}
+					}
+				}
+				if (currentbutton == aboutbutton) {
+					playbutton2 = document.getElementById('play');
+					playbutton2.onclick = function() {
+						open('play', false);
+					}
+					
+					//insert new img to ABOUT page img display
+					display1 = document.getElementsByClassName('d1')[0];
+					var wrap = document.createElement('div');
+					var div = document.createElement('div'); //first pic of author page
+					var img = document.createElement('img');
+					
+					div.appendChild(img);
+					wrap.appendChild(div);
+					display1.appendChild(wrap);
+					
+					wrap.style.overflow = "hidden";
+					wrap.style.width = "100%";
+					wrap.style.height =  "100%";
+					wrap.style.background = "none";
+					wrap.style.position = "absolute";
+					wrap.style.left = "0";
+					wrap.style.zIndex = "-1";
+					
+					div.style.width = "100%";
+					div.style.height =  "100%";
+					div.style.background = "none";
+					div.style.position = "absolute";
+					div.style.left = "0";
+					div.style.zIndex = "-1";
+					
+					img.src = ("img/about1_").concat(String(pic)).concat(".jfif");
+					img.style.width = "100%";
+					img.style.height = "100%";
+					img.style.objectFit = "cover";
+					img.style.filter = "brightness(60%)";
+					
+					currentimg = div;
+				}
+				else if (currentbutton == authorbutton){
+					//insert new img to AUTHOR page img display
+					display2 = document.getElementsByClassName('d3')[0];
+					var wrap = document.createElement('div');
+					var div = document.createElement('div'); //first pic of author page
+					var img = document.createElement('img');
+					
+					div.appendChild(img);
+					wrap.appendChild(div);
+					display2.appendChild(wrap);
+					
+					wrap.style.overflow = "hidden";
+					wrap.style.width = "100%";
+					wrap.style.height =  "100%";
+					wrap.style.background = "none";
+					wrap.style.position = "absolute";
+					wrap.style.left = "0";
+					wrap.style.zIndex = "-1";
+					
+					div.style.width = "100%";
+					div.style.height =  "100%";
+					div.style.background = "none";
+					div.style.position = "absolute";
+					div.style.left = "0";
+					div.style.zIndex = "-1";
+					
+					img.src = ("img/about3_").concat(String(pic2)).concat(".jpg");
+					img.style.width = "100%";
+					img.style.height = "100%";
+					img.style.objectFit = "cover";
+					img.style.objectPosition = "0 30%";
+					img.style.filter = "brightness(60%)";
+					
+					currentimg2 = div;
+				}
+			}
+			
+			
+			for (var i = 0; i < tabdivs.length; i++){
+				if (typeof(tabdivs[i].className) !== 'undefined') {
+					tabs[tabdivs[i].className] = tabdivs[i].cloneNode(true);
+					if (tabdivs[i].className != 'about') {
+						content.removeChild(tabdivs[i]);
+					}
+				}
+			}
+			
+			function scrolltoheader(){
+				document.documentElement.style.scrollBehavior = 'auto';
+				document.getElementById('topheader').scrollIntoView();
+				document.documentElement.style.scrollBehavior = 'smooth';
+			}
+			
+			function open(opendiv, turngreen) {
+				scrolltoheader();
+				if (opendiv != 'play'){
+					for (var i in tabs){
+						if (tabs[i].className == opendiv) {
+							if (typeof(content.getElementsByClassName(tabs[i].className)[0]) === 'undefined') {
+								content.appendChild(tabs[i].cloneNode(true));
+								console.log(tabs[i].className, 'added');
+							}
+						}
+						else if (typeof(content.getElementsByClassName(tabs[i].className)[0]) !== 'undefined') {
+							content.removeChild(content.getElementsByClassName(tabs[i].className)[0]);
+							console.log(tabs[i].className, 'removed');
+						}
+					}
+				}
+				if (turngreen != false) {
+					if (opendiv == 'about') {
+						currentbutton = aboutbutton;
+						tabanim.style.transition = "left 0.5s";
+						tabanim.style.left = "0";
+					}
+					else if (opendiv == 'survey') {
+						currentbutton = surveybutton;
+						tabanim.style.transition = "left 0.5s";
+						tabanim.style.left = "calc(100%/4)";
+					}
+					else if (opendiv == 'author') {
+						currentbutton = authorbutton;
+						tabanim.style.transition = "left 0.5s";
+						tabanim.style.left = "calc(200%/4)";
+					}
+					else if (opendiv == 'play') {
+						currentbutton = playbutton;
+						tabanim.style.transition = "none";
+						tabanim.style.left = "calc(300%/4)";
+					}
+					currentbutton.style.transition = "none";
+					if (opendiv != 'play'){
+						currentbutton.style.background = "rgba(255, 255, 0, 0.9)";
+					}
+					else {
+						currentbutton.style.background = "rgba(0, 255, 0, 0.9)";
+					}
+					for (var i = 0; i < tabbuttons.length; i++){
+						if (tabbuttons[i] != currentbutton) {
+							tabbuttons[i].style.transition = "background 0.5s";
+							tabbuttons[i].style.background = "rgba(255, 215, 0, 0.9)";
+						}
+					}
+				}
+				if (opendiv != 'play'){
+					updateanims();
+				}
+				else {
+					setTimeout(function(){
+						hide.style.transition = "left 0.5s";
+						hide.style.left = "0";
+						setTimeout(function(){
+							window.name = "animation";
+							window.location.href = "game.html";
+						}, 500);
+					}, 200);
+				}
+			}
+			
+			
+			/*for (var i = 0; i < tabdivs.length; i++){
+				if (tabdivs[i].className != 'about') {
+					content.removeChild(tabdivs[i]);
+				}
+			}*/
+			aboutbutton.onclick = function() {open('about')}
+			surveybutton.onclick = function() {open('survey')}
+			authorbutton.onclick = function() {open('author')}
+			playbutton.onclick = function() {
+				open('play', true);
+			}
+			playbutton2.onclick = function() {
+				open('play', false);
+			}
+			
+			updateanims();
+			
+			if (window.name == 'animation' || window.name == 'animation1_2') {
+				if (window.name == 'animation1_2'){
+					bodydiv.style.overflowY = "hidden";
+				}
+				hide.style.transition = "none";
+				hide.style.left = "0";
+				window.onload = function(){
+					hide.style.transition = "left 0.5s";
+					hide.style.left = "100%";
+					setTimeout(function(){
+						if (window.name == 'animation1_2'){
+							bodydiv.style.overflowY = "";
+						}
+						window.name = '';
+					}, 500);
+				}
+			}
+			else {
+				hide.style.transition = "none";
+				hide.style.left = "100%";
+			}
+			
+			
+			var wrap0 = document.createElement('div');
+			var div0 = document.createElement('div'); //first pic of about page
+			var img0 = document.createElement('img');
+			
+			div0.appendChild(img0);
+			wrap0.appendChild(div0);
+			display1.appendChild(wrap0);
+			
+			wrap0.style.overflow = "hidden";
+			wrap0.style.width = "100%";
+			wrap0.style.height =  "100%";
+			wrap0.style.background = "none";
+			wrap0.style.position = "absolute";
+			wrap0.style.left = "0";
+			wrap0.style.zIndex = "-1";
+			
+			div0.style.width = "100%";
+			div0.style.height =  "100%";
+			div0.style.background = "none";
+			div0.style.position = "absolute";
+			div0.style.left = "0";
+			div0.style.zIndex = "-1";
+			
+			img0.src = ("img/about1_").concat(String(pic)).concat(".jfif");
+			img0.style.width = "100%";
+			img0.style.height = "100%";
+			img0.style.objectFit = "cover";
+			img0.style.filter = "brightness(60%)";
+			
+			currentimg = div0;
+			
+			var wrap1 = document.createElement('div');
+			var div1 = document.createElement('div'); //first pic of author page
+			var img1 = document.createElement('img');
+			
+			div1.appendChild(img1);
+			wrap1.appendChild(div1);
+			display2.appendChild(wrap1);
+			
+			wrap1.style.overflow = "hidden";
+			wrap1.style.width = "100%";
+			wrap1.style.height =  "100%";
+			wrap1.style.background = "none";
+			wrap1.style.position = "absolute";
+			wrap1.style.left = "0";
+			wrap1.style.zIndex = "-1";
+			
+			div1.style.width = "100%";
+			div1.style.height =  "100%";
+			div1.style.background = "none";
+			div1.style.position = "absolute";
+			div1.style.left = "0";
+			div1.style.zIndex = "-1";
+			
+			img1.src = ("img/about3_").concat(String(pic2)).concat(".jpg");
+			img1.style.width = "100%";
+			img1.style.height = "100%";
+			img1.style.objectFit = "cover";
+			img1.style.objectPosition = "0 30%";
+			img1.style.filter = "brightness(60%)";
+			
+			currentimg2 = div1;
+			
+			setInterval(function(){
+				if (currentbutton == aboutbutton){
+					pic++;
+					if (pic > 3) { pic = 1;}
+					var wrap = document.createElement('div');
+					var div = document.createElement('div');
+					var img = document.createElement('img');
+					
+					div.appendChild(img);
+					wrap.appendChild(div);
+					display1.appendChild(wrap);
+					
+					wrap.style.overflow = "hidden";
+					wrap.style.width = "100%";
+					wrap.style.height =  "100%";
+					wrap.style.background = "none";
+					wrap.style.position = "absolute";
+					wrap.style.zIndex = "-1";
+					
+					div.style.width = "100%";
+					div.style.height =  "100%";
+					div.style.background = "none";
+					div.style.position = "absolute";
+					div.style.left = "100%";
+					div.style.zIndex = "-1";
+					
+					img.src = ("img/about1_").concat(String(pic)).concat(".jfif");
+					img.style.width = "100%";
+					img.style.height = "100%";
+					img.style.objectFit = "cover";
+					img.style.filter = "brightness(60%)";
+					
+					setTimeout(function(){ //img sliding animation for the image display
+						if (currentbutton == aboutbutton){
+							currentimg.className = '12345';
+							currentimg.style.position = "absolute";
+							currentimg.style.transition = "none";
+							currentimg.style.transition = "left 1.5s";
+							currentimg.style.left = "-100%";
+							
+							div.style.transition = "left 1.5s";
+							div.style.left = "0";
+							setTimeout(function(){
+								if (currentbutton == aboutbutton){
+									var divs = display1.getElementsByClassName('12345');
+									if (divs.length != 0) {
+										for (var i = 0; i < divs.length; i++){
+											display1.removeChild(divs[i].parentNode);
+										}
+									}
+									currentimg = div;
+								}
+							}, 1500);
+						}
+					}, 300); //need 2 put delay so that the animation works ;-;
+				}
+				else if (currentbutton == authorbutton){
+					pic2++;
+					if (pic2 > 3) { pic2 = 1;}
+					var wrap = document.createElement('div');
+					var div = document.createElement('div');
+					var img = document.createElement('img');
+					
+					div.appendChild(img);
+					wrap.appendChild(div);
+					display2.appendChild(wrap);
+					
+					wrap.style.overflow = "hidden";
+					wrap.style.width = "100%";
+					wrap.style.height =  "100%";
+					wrap.style.background = "none";
+					wrap.style.position = "absolute";
+					wrap.style.zIndex = "-1";
+					
+					div.style.width = "100%";
+					div.style.height =  "100%";
+					div.style.background = "none";
+					div.style.position = "absolute";
+					div.style.left = "100%";
+					div.style.zIndex = "-1";
+					
+					img.src = ("img/about3_").concat(String(pic2)).concat(".jpg");
+					img.style.width = "100%";
+					img.style.height = "100%";
+					img.style.objectFit = "cover";
+					img.style.objectPosition = "0 30%";
+					img.style.filter = "brightness(60%)";
+					
+					setTimeout(function(){
+						if (currentbutton == authorbutton){
+							currentimg2.className = '12345';
+							currentimg2.style.position = "absolute";
+							currentimg2.style.transition = "none";
+							currentimg2.style.transition = "left 1.5s";
+							currentimg2.style.left = "-100%";
+							
+							div.style.transition = "left 1.5s";
+							div.style.left = "0";
+							setTimeout(function(){
+								if (currentbutton == authorbutton){
+									var divs = display2.getElementsByClassName('12345');
+									if (divs.length != 0) {
+										for (var i = 0; i < divs.length; i++){
+											display2.removeChild(divs[i].parentNode);
+										}
+									}
+									currentimg2 = div;
+								}
+							}, 1500);
+						}
+					}, 300);
+				}
+			}, 3700);
+		</script>
+	</body>
+</html>

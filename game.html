@@ -1,0 +1,703 @@
+<!DOCTYPE html>
+							
+							
+<html>
+	<head>
+		<meta charset="UTF-8" />
+		<title>Glenn & Glenn Insiders: Chemical Reaction</title>
+		<meta name="viewport" content="width=device-width">
+		<link rel="stylesheet" href="css/chainrx.css" type="text/css" />
+	</head>
+	<body>
+		<header id = 'topheader'><div></div><div>Glenn & Glenn Insiders</div><div></div></header>
+		<div class = "container">
+			<img src = "img/about2.png">
+			<div class = "playbuttons">
+				<div id = "back">
+					<button>
+						<img src = "img/back.png">
+					</button>
+				</div>
+				<div id = "undo">
+					<button>
+						<img src = "img/undo.png"><!--"img/KINGU CRIMSON!.png"-->
+					</button>
+				</div>
+			</div>
+			<div class = "boardparent">
+			<div class = "board">
+			</div>
+			</div>
+			<div></div>
+		</div>
+		<div id = "red_0"><div id = "red"></div></div>
+		<div id = "blacklist_0">
+			<div id = "blacklist">
+				<div>
+					<div>ERROR: Loading Website:</div>
+					<div>Please visit index.html first before going to this website. Thank you! :)</div>
+					<div>- Website Developers</div>
+				</div>
+			</div>
+		</div>
+		<div id = "winner_0">
+			<div id = "winner">
+				<div></div>
+				<div class = "wintexts">
+					<div>Congratulations!</div>
+					<div id = "wintext">Winner Text</div>
+					<div>Thank you for playing!</div>
+				</div>
+				<div id = "winnerbuttons">
+					<button id = "playagain"><div>Play Again</div></button>
+					<div></div>
+					<button id = "goback"><div>Go Back To Website</div></button>
+				</div>
+				<div></div>
+			</div>
+		</div>
+		<script>
+			var plr = 1, cols = 6, rows = 10, board = [], checkboard = [], lastboards = [], lastplrlocs = [], movenum = 0, realboard = [], plrloc = [], boarddiv = document.getElementsByClassName('board')[0], i, v, deg = 0, checking = false, pause = false, animspeed = 200;//150;
+			var hide = document.getElementById('red');
+			function printboard(b){
+				var string = '';
+				var bar = '';
+				for (var i = 0; i < cols * 3.5; i++){
+					bar = bar.concat('- ');
+				}
+				for (var v = 0; v < rows; v++){
+					for (var i = 0; i < cols; i++){
+						string = string.concat(' | ', String(b[i][v]), ' | ');
+					}
+					string = string.concat('\n', bar, '\n');
+				}
+				<!-- //console.clear(); -->
+				//console.log(string);
+			}
+			function identifythreshold(i, v){
+				var threshold;
+				if (i == 0 || i == cols-1 || v == 0 || v == rows-1){ /* leftmost/rightmost column, or edge*/
+					if ((i == 0 || i == cols-1) && (v == 0 || v == rows-1)) { /* corner */
+						threshold = 1;
+					}
+					else {
+						threshold = 2;
+					}
+				}
+				else { /* not edge nor corner */
+					threshold = 3;
+				}
+				return threshold;
+			}
+			function animation(cplr, cell, a){
+				var img = cell.getElementsByClassName(String(a))[0];
+				img.src = ("img/").concat(String(cplr)).concat("1.png");
+				img.style.visibility = "visible";
+				img.style.opacity = "1";
+				
+				
+				if (a == 0){
+					img.style.left = "auto";
+					img.style.transition = "right 0.2s";
+					img.style.right = "115%";
+					setTimeout(function(){
+						img.style.transition = "none";
+						img.style.visiblity = "hidden";
+						img.style.opacity = "0";
+						img.style.top = "8%";
+						img.style.right = "0";
+						img.style.left = "auto";
+					}, animspeed);
+					/*var b = setInterval(function(){
+						img.style.right = String(Number((img.style.right).replace("%", ""))+10).concat("%");
+						if (img.style.right == "100%"){
+							clearInterval(b);
+						}
+					}, animspeed/10);*/
+				}
+				else if (a == 1){
+					img.style.right = "auto";
+					img.style.transition = "left 0.2s";
+					img.style.left = "115%";
+					setTimeout(function(){
+						img.style.transition = "none";
+						img.style.visiblity = "hidden";
+						img.style.opacity = "0";
+						img.style.top = "8%";
+						img.style.right = "auto";
+						img.style.left = "0";
+					}, animspeed);
+					/*var b = setInterval(function(){
+						img.style.left = String(Number((img.style.left).replace("%", ""))+10).concat("%");
+						if (img.style.left == "100%"){
+							clearInterval(b);
+						}
+					}, animspeed/10);*/
+				}
+				else if (a == 2){
+					img.style.top = "auto";
+					img.style.transition = "bottom 0.2s";
+					img.style.bottom = "112.5%";
+					setTimeout(function(){
+						img.style.transition = "none";
+						img.style.visiblity = "hidden";
+						img.style.opacity = "0";
+						img.style.top = "auto";
+						img.style.bottom = "0";
+						img.style.left = "9%";
+					}, animspeed);
+					/*var b = setInterval(function(){
+						img.style.bottom = String(Number((img.style.bottom).replace("%", ""))+10).concat("%");
+						if (img.style.bottom == "100%"){
+							clearInterval(b);
+						}
+					}, animspeed/10);*/
+				}
+				else if (a == 3){
+					img.style.bottom = "auto";
+					img.style.transition = "top 0.2s";
+					img.style.top = "112.5%";
+					setTimeout(function(){
+						img.style.transition = "none";
+						img.style.visiblity = "hidden";
+						img.style.opacity = "0";
+						img.style.top = "0";
+						img.style.bottom = "auto";
+						img.style.left = "9%";
+					}, animspeed);
+					/*var b = setInterval(function(){
+						img.style.top = String(Number((img.style.top).replace("%", ""))+10).concat("%");
+						if (img.style.top == "100%"){
+							clearInterval(b);
+						}
+					}, animspeed/10);*/
+				}
+			}
+			function updateboard(){
+				for (var i = 0; i < cols; i++){
+					for (var v = 0; v < rows; v++){
+						var img = board[i][v].getElementsByClassName("cell")[0];
+						if (realboard[i][v] != 0) {
+							var threshold = identifythreshold(i, v);
+							img.style.visibility = 'visible';
+							if (realboard[i][v] > threshold){
+								img.src = ("img/").concat(String(plrloc[i][v])).concat(String(threshold)).concat(".png");
+							}
+							else {
+								img.src = ("img/").concat(String(plrloc[i][v])).concat(String(realboard[i][v])).concat(".png");
+							}
+						}
+						else {
+							img.style.visibility = 'hidden';
+						}
+					}
+				}
+			}
+			function explode(i, v, threshold, currentplr){
+				realboard[i][v] = realboard[i][v] - (threshold + 1);
+				if (realboard[i][v] == 0) {
+					plrloc[i][v] = 0;
+				}
+				board[i][v].getElementsByClassName("cell")[0].style.visibility = "hidden";
+				for (var a = 0; a < 4; a++){
+					animation(currentplr, board[i][v], a);
+				}/* */
+				<!-- setTimeout(function(){ -->
+					if (i-1 != -1) {
+						realboard[i-1][v]++;
+						plrloc[i-1][v] = currentplr;
+					}
+					if (v+1 != rows) {
+						realboard[i][v+1]++;
+						plrloc[i][v+1] = currentplr;
+					}
+					if (i+1 != cols) {
+						realboard[i+1][v]++;
+						plrloc[i+1][v] = currentplr;
+					}
+					if (v-1 != -1) {
+						realboard[i][v-1]++;
+						plrloc[i][v-1] = currentplr;
+					}
+				<!-- }, animspeed); -->
+			}
+			function checkpop(){
+				checking = true;
+				var same = true, currentplr = plr, stop = false;
+				var check = setInterval(function(){
+					if (stop == false){
+						same = true;
+						var exploded = false;
+						for (var i = 0; i < cols; i++){ //Makes checkboard have same values as realboard
+							for (var v = 0; v < rows; v++){
+								checkboard[i][v] = realboard[i][v];
+							}
+						}
+						var explosions = [];
+						for (var i = 0; i < cols; i++){
+							for (var v = 0; v < rows; v++){
+								var threshold = identifythreshold(i, v);
+								if (realboard[i][v] > threshold) {
+									exploded = true;
+									explosions.push([i, v, threshold]);
+								}
+							}
+						}
+						for (var a = 0; a < explosions.length; a++){
+							explode(explosions[a][0],explosions[a][1], explosions[a][2], currentplr);
+						}
+						if (exploded == true){
+							setTimeout(updateboard, animspeed);
+						}
+						for (var i = 0; i < cols; i++){ //Checks if checkboard and realboard have same values
+							for (var v = 0; v < rows; v++){
+								if (checkboard[i][v] != realboard[i][v]) {
+									same = false;
+									break;
+								}
+							}
+						}
+						//console.log("CHECKING:");
+						printboard(realboard);
+						setTimeout(checkwinner, animspeed);
+						if (same == true) {
+							checking = false;
+							stop = true;
+							clearInterval(check);
+						}
+					}
+				}, animspeed + 75);
+			}
+			
+			function endgame(plr){
+				for (var i = 0; i < cols; i++){
+					for (var v = 0; v < cols; v++){
+						board[i][v].onclick = null;
+					}
+				}
+				scrolltoheader();
+				document.documentElement.style.overflow = "hidden";
+				var windiv = document.getElementById('winner');
+				var winnerbuttons = document.getElementById('winnerbuttons');
+				var playagainbutton = document.getElementById('playagain');
+				var gobackbutton = document.getElementById('goback');
+				var wincontent = windiv.childNodes;
+				var string, bgcolor;
+				if (plr == 1){
+					string = ' (Purple) ';
+					bgcolor = "rgba(255, 0, 255, 0.7)";
+				}
+				else if (plr == 2){
+					string = ' (Green) ';
+					bgcolor = "rgba(0, 255, 0, 0.7)";
+				}
+				document.getElementById('wintext').innerHTML = ('Player ').concat(String(plr)).concat(string).concat(' has won!');
+				windiv.parentNode.style.pointerEvents = "auto";
+				windiv.style.transition = "none";
+				windiv.style.left = "0";
+				windiv.style.transition = "background 3s";
+				windiv.style.background = bgcolor;
+				for (var i = 0; i < wincontent.length; i++){
+					if (typeof(wincontent[i].className) !== 'undefined'){
+						var element = wincontent[i];
+						element.style.transition = "opacity 3s";
+						element.style.opacity = "1";
+					}
+				}
+				playagainbutton.onmousedown = function(){
+					this.style.transition = "none";
+					this.style.filter = "brightness(80%)";
+				}
+				playagainbutton.onmouseup = function(){
+					this.style.transition = "background 0.5s";
+					this.style.filter = "none";
+				}
+				
+				playagainbutton.ontouchstart = function(){
+					this.style.transition = "none";
+					this.style.filter = "brightness(80%)";
+				}
+				playagainbutton.ontouchend = function(){
+					this.style.transition = "background 0.5s";
+					this.style.filter = "none";
+				}
+				playagainbutton.onmouseout = function(){
+					this.style.transition = "background 0.5s, filter 0.5s";
+					this.style.filter = "none";
+				}
+				
+				gobackbutton.onmousedown = function(){
+					this.style.transition = "none";
+					this.style.filter = "brightness(80%)";
+				}
+				gobackbutton.onmouseup = function(){
+					this.style.transition = "background 0.5s";
+					this.style.filter = "none";
+				}
+				gobackbutton.ontouchstart = function(){
+					this.style.transition = "none";
+					this.style.filter = "brightness(80%)";
+				}
+				gobackbutton.ontouchend = function(){
+					this.style.transition = "background 0.5s";
+					this.style.filter = "none";
+				}
+				gobackbutton.onmouseout = function(){
+					this.style.transition = "background 0.5s, filter 0.5s";
+					this.style.filter = "none";
+				}
+				
+				playagainbutton.onclick = function(){
+					scrolltoheader();
+					hide.style.transition = "none";
+					hide.style.right = "0";
+					hide.style.top = "100%";
+					setTimeout(function(){
+						hide.style.transition = "top 0.5s";
+						hide.style.top = "0";
+						setTimeout(function(){
+							window.name = "animation2";
+							window.location.href = "game.html";
+						}, 500);
+					}, 300);
+				}
+				gobackbutton.onclick = function(){
+					scrolltoheader();
+					hide.style.transition = "none";
+					hide.style.top = "0";
+					hide.style.right = "100%";
+					setTimeout(function(){
+						hide.style.transition = "right 0.5s";
+						hide.style.right = "0";
+						setTimeout(function(){
+							window.name = "animation1_2";
+							window.location.href = "index.html";
+						}, 500);
+					}, 300);
+				}
+				//console.log(('Player ').concat(String(plr)).concat(' wins!'));
+			}
+			
+			function checkwinner(){
+				if (movenum >= 2){
+					var plr1 = false;
+					var plr2 = false;
+					for (var i = 0; i < cols; i++){
+						for (var v = 0; v < rows; v++){
+							if (plrloc[i][v] == 1 && plr1 == false){
+								plr1 = true;
+							}
+							if (plrloc[i][v] == 2 && plr2 == false){
+								plr2 = true;
+							}
+							if (plr1 == true && plr2 == true){
+								break;
+							}
+						}
+						if (plr1 == true && plr2 == true){
+							break;
+						}
+					}
+					if (plr1 == true && plr2 == false) {
+						endgame(1);
+						return true;
+					}
+					else if (plr1 == false && plr2 == true) {
+						endgame(2);
+						return true;
+					}
+				}
+			}
+			
+			function switchplr(){
+				var color;
+				if (plr == 1) {
+					plr = 2;
+					color = "#00FF00";
+				}
+				else if (plr == 2){
+					plr = 1;
+					color = "#FF00FF";
+				}
+				boarddiv.style.border = ("10px solid").concat(color);
+				var buttons = boarddiv.getElementsByTagName('BUTTON');
+				for (var i = 0; i < buttons.length; i++){
+					buttons[i].style.border = ("2px solid").concat(color);
+				}
+			}
+			
+			function buttonclick(c, r){
+				if (movenum == -2){
+					board[0][0].removeChild(document.getElementById('remove'));
+				}
+				if (plrloc[c][r] == 0 || plrloc[c][r] == plr) {
+					if (pause == false) {
+						pause = true;
+						lastboards[movenum] = [];
+						lastplrlocs[movenum] = [];
+						for (var i = 0; i < cols; i++){
+							lastboards[movenum][i] = [];
+							lastplrlocs[movenum][i] = [];
+							for (v = 0; v < rows; v++){
+								lastboards[movenum][i][v] = realboard[i][v];
+								lastplrlocs[movenum][i][v] = plrloc[i][v];
+							}
+						}
+						movenum++;
+						var value = realboard[c][r] + 1;
+						realboard[c][r] = value;
+						plrloc[c][r] = plr;
+						for (var i = 0; i < cols; i++){ //Makes checkboard have same values as realboard
+							for (var v = 0; v < rows; v++){
+								checkboard[i][v] = realboard[i][v];
+							}
+						}
+						if (identifythreshold(c, r) < value){
+							checkpop(); //Only checks the board for chains if the move that the player made has started a chain (Clicked a cell which caused it to go above its threshold)
+							var waitforfinish = setInterval(function(){
+								if (checking == false){
+									clearInterval(waitforfinish);
+									updateboard();
+									//console.log("Move has been made successfully! Current board state:");
+									printboard(realboard); //this thing prints out the board for visualization
+									switchplr();
+									pause = false;
+								}
+							}, 10);
+						}
+						else {
+							updateboard();
+							//console.log("Move has been made successfully! Current board state:");
+							printboard(realboard);
+							switchplr();
+							pause = false;
+						}
+					}
+				}
+			}
+			
+			function scrolltoheader(){
+				document.documentElement.style.scrollBehavior = 'auto';
+				document.getElementById('topheader').scrollIntoView();
+				document.documentElement.style.scrollBehavior = 'smooth';
+			}
+
+			for (i = 0; i < cols; i++){
+				board[i] = [];
+				realboard[i] = [];
+				checkboard[i] = [];
+				plrloc[i] = [];
+				for (v = 0; v < rows; v++) {
+					plrloc[i][v] = 0;
+				}
+			}
+			for (i = 0; i < cols; i++){
+				for (v = 0; v < rows; v++){
+					var square = document.createElement('div');
+					var button = document.createElement('button');
+					boarddiv.appendChild(square);
+					square.appendChild(button);
+					square.style.position = "relative";
+					button.style.border = "2px solid #FF00FF";
+					button.className = String(i).concat(String(v));
+					board[i][v] = button;
+					realboard[i][v] = 0;
+					plrloc[i][v] = 0;
+					var img = document.createElement('img');
+					button.appendChild(img);
+					img.style.position = "absolute";
+					img.style.top = "0";
+					img.style.bottom = "0";
+					img.style.left = "0";
+					img.style.right = "0";
+					img.style.zIndex = "68";
+					img.className = "cell";
+					for (var a = 0; a < 4; a++){
+						var img = document.createElement("img");
+						board[i][v].appendChild(img);
+						img.className = String(a);
+						img.style.width = "80%";
+						img.style.height = "auto";
+						img.style.position = "absolute";
+						img.style.bottom = "0";
+						img.style.right = "0";
+						if (a == 0 || a == 1) {
+							img.style.top = "8%";
+							img.style.left = "0";
+						}
+						else {
+							img.style.top = "0";
+							img.style.left = "9%";
+						}
+						img.style.zIndex = String(a+69);
+						img.style.visibility = "hidden";
+					}
+					button.onclick = function(){
+						buttonclick(Number(this.className.substring(0, 1)), Number(this.className.substring(1, 2)));
+					}
+				}
+			}
+			var backbutton = document.getElementById('back').getElementsByTagName('BUTTON')[0];
+			backbutton.onmousedown = function(){
+				this.style.transition = "none";
+				this.style.filter = "brightness(80%)";
+			}
+			backbutton.onmouseup = function(){
+				this.style.transition = "background 0.5s";
+				this.style.filter = "none";
+			}
+			backbutton.ontouchstart = function(){
+				this.style.transition = "none";
+				this.style.filter = "brightness(80%)";
+			}
+			backbutton.ontouchend = function(){
+				this.style.transition = "background 0.5s";
+				this.style.filter = "none";
+			}
+			backbutton.onmouseout = function(){
+				this.style.transition = "background 0.5s, filter 0.5s";
+				this.style.filter = "none";
+			}
+			backbutton.onclick = function(){
+				scrolltoheader();
+				hide.style.transition = "none";
+				hide.style.top = "0";
+				hide.style.right = "100%";
+				setTimeout(function(){
+					hide.style.transition = "right 0.5s";
+					hide.style.right = "0";
+					setTimeout(function(){
+						window.name = "animation";
+						window.location.href = "index.html";
+					}, 500);
+				}, 300);
+			}
+			var undobutton = document.getElementById('undo').getElementsByTagName('BUTTON')[0];
+			undobutton.onmousedown = function(){
+				this.style.transition = "none";
+				this.style.filter = "brightness(80%)";
+			}
+			undobutton.onmouseup = function(){
+				this.style.transition = "background 0.5s";
+				this.style.filter = "none";
+			}
+			undobutton.ontouchstart = function(){
+				this.style.transition = "none";
+				this.style.filter = "brightness(80%)";
+			}
+			undobutton.ontouchend = function(){
+				this.style.transition = "background 0.5s";
+				this.style.filter = "none";
+			}
+			undobutton.onmouseout = function(){
+				this.style.transition = "background 0.5s, filter 0.5s";
+				this.style.filter = "none";
+			}
+			undobutton.onclick = function(){
+				if (movenum >= 1){
+					switchplr();
+					movenum--;
+					for (var i = 0; i < cols; i++){
+						for (var v = 0; v < rows; v++){
+							realboard[i][v] = lastboards[movenum][i][v];
+							plrloc[i][v] = lastplrlocs[movenum][i][v];
+							var img = board[i][v].getElementsByClassName("cell")[0];
+							if (realboard[i][v] != 0) {
+								img.style.visibility = 'visible';
+								img.src = ("img/").concat(String(plrloc[i][v])).concat(String(realboard[i][v])).concat(".png");
+							}
+							else {
+								img.style.visibility = 'hidden';
+							}
+							
+						}
+					}
+					if (movenum == -2){
+						var img = document.createElement("img");
+						board[0][0].appendChild(img);
+						img.id = "remove";
+						img.style.position = "fixed";
+						img.style.zIndex = "6969";
+						img.style.visibility = "hidden";
+						img.src = "img/12.png";
+					}
+					//console.log("KINGU CRIMSON! Time has been reverted to the last board state:");
+					printboard(realboard);
+				}
+				else {
+					//console.log("ERROR: King Crimson has reached the beginning of time.");
+				}
+			}
+			function rotatecells(){
+				for (i = 0; i < cols; i++){
+					for (v = 0; v < rows; v++){
+						board[i][v].getElementsByClassName("cell")[0].style.transform = ("rotate(").concat(String(deg)).concat("deg)");
+					}
+				}
+				deg+=0.5;
+				if (deg == 360){
+					deg = 0;
+				}
+			}
+			setInterval(rotatecells, 10);
+			var colstring = "1fr", rowstring = "1fr";
+			for (var i = 1; i < cols; i++){
+				colstring = colstring.concat(" 1fr");
+			}
+			for (var i = 1; i < rows; i++){
+				rowstring = rowstring.concat(" 1fr");
+			}
+			boarddiv.style.gridTemplateColumns = colstring;
+			boarddiv.style.gridTemplateRows = rowstring;
+			boarddiv.style.border = "10px solid #FF00FF";
+			
+			var img = document.createElement("img"); //fixes board changing size
+			board[0][0].appendChild(img);
+			img.id = "remove";
+			img.style.visibility = "hidden";
+			img.style.position = "relative";
+			img.style.zIndex = "6969";
+			img.style.left = "100%";
+			img.src = "img/12.png";
+			
+			if (window.name == 'animation') {
+				hide.style.transition = "none";
+				hide.style.right = "0";
+				window.onload = function(){
+					var hide = document.getElementById('red');
+					hide.style.transition = "right 0.5s";
+					hide.style.right = "100%";
+					setTimeout(function(){
+						window.name = 'a';
+					}, 500);
+				}
+			}
+			else if (window.name == 'animation2'){
+				document.documentElement.style.overflowY = "hidden";
+				hide.style.transition = "none";
+				hide.style.top = "0";
+				window.onload = function(){
+					var hide = document.getElementById('red');
+					hide.style.transition = "top 0.5s";
+					hide.style.top = "100%";
+					setTimeout(function(){
+						window.name = 'a';
+						document.documentElement.style.overflowY = "";
+					}, 500);
+				}
+			}
+			else if (window.name == 'a'){
+				hide.style.transition = "none";
+				hide.style.right = "100%";
+			}
+			else if (window.name != 'a'){
+				hide.style.transition = "none";
+				hide.style.right = "100%";
+				document.documentElement.style.overflow = "hidden";
+				document.getElementById('blacklist').style.left = "0";
+				hide.style.transition = "none";
+				hide.style.right = "100%";
+			}
+		</script>
+	</body>
+</html>
